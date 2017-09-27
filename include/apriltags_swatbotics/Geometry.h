@@ -13,7 +13,7 @@
 // classes all used by the TagDetector class.
 
 #include "AprilTypes.h"
-
+#include <map>
 //////////////////////////////////////////////////////////////////////
 // Struct for a line segment, which holds start/end points, length,
 // angle.  A segment may also have a number of children, as well as a
@@ -37,21 +37,21 @@ bool intersect(const Segment* s1, const Segment* s2, at::Point& pinter);
 
 class Gridder {
 public:
-  
+
   SegmentArray cells;
   at::real x0, y0, x1, y1;
   int width, height;
   at::real metersPerCell;
 
-  Gridder(at::real x0, at::real y0, 
-          at::real x1, at::real y1, 
+  Gridder(at::real x0, at::real y0,
+          at::real x1, at::real y1,
           at::real metersPerCell);
 
   int sub2ind(int x, int y) const;
 
   void add(at::real x, at::real y, Segment* s);
 
-  void find(at::real x, at::real y, at::real range, 
+  void find(at::real x, at::real y, at::real range,
             SegmentArray& results) const;
 
 };
@@ -113,7 +113,7 @@ class GLineSegment2D {
 public:
 
   at::Point p1, p2;
-  
+
   GLineSegment2D();
 
   GLineSegment2D(const at::Point& p1, const at::Point& p2);
@@ -122,8 +122,8 @@ public:
 
 };
 
-bool intersect(const GLineSegment2D& s1, 
-               const GLineSegment2D& s2, 
+bool intersect(const GLineSegment2D& s1,
+               const GLineSegment2D& s2,
                at::Point& pinter);
 
 //////////////////////////////////////////////////////////////////////

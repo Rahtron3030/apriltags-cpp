@@ -9,8 +9,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsign-compare -frounding-math")
 set(CMAKE_CXX_FLAGS_DEBUG "-O")
 set(CMAKE_CXX_FLAGS_RELEASE "-O2")
 
-find_package(catkin REQUIRED COMPONENTS 
-  cmake_modules  
+find_package(catkin REQUIRED COMPONENTS
+  cmake_modules
 )
 
 catkin_package(
@@ -29,7 +29,7 @@ else()
 endif()
 
 
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 3.2 REQUIRED)
 include_directories(
   include/${PROJECT_NAME}
   ${OpenCV_INCLUDE_DIRS}
@@ -38,22 +38,21 @@ include_directories(
 
 FILE(GLOB_RECURSE apriltags_swatbotics_headers "include/*.h")
 
-add_library(${PROJECT_NAME} 
+add_library(${PROJECT_NAME}
   src/CameraUtil.cpp
   src/DebugImage.cpp
-  src/Geometry.cpp 
+  src/Geometry.cpp
   src/GrayModel.cpp
-  src/MathUtil.cpp 
+  src/MathUtil.cpp
   src/Refine.cpp
-  src/TagDetector.cpp 
+  src/TagDetector.cpp
   src/TagFamily.cpp
   src/TagFamilies.cpp
   src/UnionFindSimple.cpp
   ${apriltags_swatbotics_headers}
 )
 
-target_link_libraries(${PROJECT_NAME} 
+target_link_libraries(${PROJECT_NAME}
   ${OpenCV_LIBRARIES}
   ${catkin_LIBRARIES}
 )
-
